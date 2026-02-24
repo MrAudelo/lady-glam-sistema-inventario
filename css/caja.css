@@ -1,0 +1,182 @@
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f7efe4;
+  color: #3a2c20;
+}
+
+/* ================= BOTÓN MENÚ ================= */
+.top-nav {
+  padding: 20px;
+}
+
+.btn-menu {
+  background: #ead3a6;        /* suave */
+  color: #5a4633;             /* texto blando */
+  border: none;
+  padding: 10px 22px;
+  border-radius: 999px;       /* estilo pill */
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .2s ease, transform .1s ease;
+}
+
+.btn-menu:hover {
+  background: #e1c58f;
+  transform: translateY(-1px);
+}
+
+/* ================= HEADER ================= */
+.header-principal {
+  text-align: center;
+  margin: 20px 0 40px;
+}
+
+.header-principal h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.header-principal .subtitulo {
+  color: #7a6a5c;
+  font-size: 16px;
+}
+
+/* ================= CARDS GENERALES ================= */
+.card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 25px;
+  margin: 0 auto 25px;
+  max-width: 1100px;
+}
+
+.card-title {
+  margin: 0 0 20px;
+  font-size: 20px;
+}
+
+/* ================= FILTROS ================= */
+.filtros-card {
+  max-width: 900px;
+}
+
+.filtros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.filtro {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtro label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #6b5b4f;
+}
+
+.filtro input,
+.filtro select {
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid #d9cfc3;
+  font-size: 14px;
+  background: #fff;
+}
+
+/* ================= RESUMEN ================= */
+.resumen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+.resumen-item {
+  background: #fdf8f2;
+  border-radius: 20px;
+  padding: 18px;
+  text-align: center;
+}
+
+.resumen-item span {
+  display: block;
+  font-size: 14px;
+  color: #7a6a5c;
+}
+
+.resumen-item strong {
+  display: block;
+  font-size: 24px;
+  margin-top: 6px;
+}
+
+/* ================= TABLA MOVIMIENTOS ================= */
+.tabla-caja {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabla-caja thead {
+  background: #e6c690;
+}
+
+.tabla-caja th {
+  text-align: left;
+  padding: 14px;
+}
+
+.tabla-caja td {
+  padding: 14px;
+  border-bottom: 1px solid #eee2d6;
+}
+
+.tabla-caja tbody tr:nth-child(even) {
+  background: #f9f3ea;
+}
+
+/* ================= CORTE POR EMPLEADO ================= */
+.empleados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.empleado-card {
+  background: #fdf8f2;
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.empleado-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.empleado-card p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.empleado-card .total {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* ================= FOOTER ================= */
+.footer-caja {
+  text-align: center;
+  padding: 25px 10px;
+  font-size: 14px;
+  color: #7a6a5c;
+}

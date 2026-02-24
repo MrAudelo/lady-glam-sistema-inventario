@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Venta | Mirai Boutique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/ventas.css">
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="js/auth-guard.js"></script>
+</head>
+<body>
+
+<main class="container">
+
+  <div class="modal-content modal-venta">
+<!-- ================= HEADER ================= -->
+<header class="top-bar">
+  <button class="btn-back" onclick="location.href='index.html'">
+    ← Menú principal
+  </button>
+</header>
+    <!-- HEADER -->
+    <div class="modal-header">
+      <h2>Registrar venta</h2>
+      <p class="subtext">Escanea productos y aplica descuentos</p>
+    </div>
+
+    <!-- ESCÁNER -->
+    <div class="menu-card">
+      <label>Escanear producto</label>
+      <input
+        type="text"
+        id="scanInput"
+        placeholder="Escanea el producto o escribe MANUAL"
+        autocomplete="off"
+      >
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="venta-lista">
+      <h3>Productos en la venta</h3>
+
+      <div class="venta-table">
+        <div class="venta-row venta-head">
+          <span>Producto</span>
+          <span>Categoría</span>
+          <span>Atributos</span>
+          <span>Precio</span>
+          <span>Cupón ($)</span>
+          <span>Desc. (%)</span>
+          <span></span>
+        </div>
+
+        <div id="listaVenta"></div>
+      </div>
+    </div>
+
+    <!-- TOTAL -->
+    <div class="venta-total">
+      <strong>Total a pagar:</strong>
+      <span id="totalVenta">$0.00</span>
+    </div>
+<!-- CANTIDAD DE MÉTODOS -->
+<div class="menu-card">
+  <label>¿Con cuántos métodos pagará?</label>
+  <select id="cantidadMetodos">
+    <option value="">Selecciona</option>
+    <option value="1">1 método</option>
+    <option value="2">2 métodos</option>
+  </select>
+</div>
+
+    <!-- ================= MÉTODOS DE PAGO ================= -->
+<div class="pagos">
+  <h3>Métodos de pago</h3>
+
+  <!-- TARJETA -->
+  <div class="metodo-box">
+    <label class="metodo-label">
+      <input
+        type="checkbox"
+        class="chk-metodo"
+        data-metodo="Tarjeta"
+        disabled
+      >
+      Tarjeta
+    </label>
+
+    <input
+      type="number"
+      class="monto-metodo"
+      data-metodo="Tarjeta"
+      placeholder="Monto con tarjeta"
+      min="0"
+      step="0.01"
+      disabled
+    >
+  </div>
+
+  <!-- TRANSFERENCIA -->
+  <div class="metodo-box">
+    <label class="metodo-label">
+      <input
+        type="checkbox"
+        class="chk-metodo"
+        data-metodo="Transferencia"
+        disabled
+      >
+      Transferencia
+    </label>
+
+    <input
+      type="number"
+      class="monto-metodo"
+      data-metodo="Transferencia"
+      placeholder="Monto por transferencia"
+      min="0"
+      step="0.01"
+      disabled
+    >
+  </div>
+<!-- EFECTIVO -->
+  <div class="metodo-box">
+    <label class="metodo-label">
+      <input
+        type="checkbox"
+        class="chk-metodo"
+        data-metodo="Efectivo"
+        disabled
+      >
+      Efectivo
+    </label>
+
+    <input
+      type="number"
+      class="monto-metodo"
+      data-metodo="Efectivo"
+      placeholder="Monto en efectivo"
+      min="0"
+      step="0.01"
+      disabled
+    >
+  </div>
+
+  <!-- RESUMEN -->
+  <div class="resumen-pagos">
+    <div class="resumen-linea">
+      <span>Total pagado:</span>
+      <strong id="totalPagado">$0.00</strong>
+    </div>
+
+    <div class="resumen-linea">
+      <span>Restante:</span>
+      <strong id="restante">$0.00</strong>
+    </div>
+
+    <div class="resumen-linea cambio">
+      <span>Cambio:</span>
+      <strong id="cambio">$0.00</strong>
+    </div>
+  </div>
+</div>
+
+    <!-- ESTADO -->
+    <div class="venta-total">
+      <span id="estadoTexto">Agrega productos y selecciona métodos de pago</span>
+    </div>
+
+ <!-- EMPLEADO -->
+<div class="menu-card">
+  <label>Empleado que realizó la venta</label>
+  <select id="selectEmpleado">
+    <option value="">Selecciona un empleado</option>
+  </select>
+</div>
+    <!-- ACCIONES -->
+    <div class="acciones venta-actions">
+      <button
+        class="btn-primary"
+        id="btnGuardarVenta"
+        onclick="guardarVenta()"
+        disabled
+      >
+        Guardar venta
+      </button>
+    </div>
+
+  </div>
+</main>
+
+<!-- PRODUCTO MANUAL -->
+<div id="modalManual" class="modal-manual hidden">
+  <div class="manual-card">
+
+  <h3>Producto manual</h3>
+
+  <!-- 👇 CONTENIDO CON SCROLL -->
+  <div class="manual-body">
+
+    <label>Nombre del producto</label>
+    <input type="text" id="manualNombre" readonly value="Producto sin código">
+
+    <label>Categoría</label>
+    <select id="manualCategoria"></select>
+
+    <div id="manualAtributos"></div>
+
+    <label>Precio</label>
+    <input type="number" id="manualPrecio">
+
+  </div>
+
+  <!-- 👇 BOTONES FIJOS -->
+  <div class="manual-actions">
+    <button id="cancelarManual" class="btn-secondary">Cancelar</button>
+    <button id="agregarManual" class="btn-primary">Agregar a la venta</button>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- JS -->
+<script type="module" src="js/ventas.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4e4d3;
+  color: #4a3b2a;
+}
+
+/* ================= HEADER ================= */
+.top-bar {
+  padding: 20px;
+}
+
+.btn-back {
+  background: #caa45e;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 22px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ================= HERO ================= */
+.hero {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 6px;
+}
+
+.hero p {
+  opacity: 0.7;
+  font-size: 15px;
+}
+
+/* ================= MENU CARD ================= */
+.menu-card {
+  background: white;
+  padding: 22px;
+  border-radius: 22px;
+  margin-bottom: 28px;
+}
+
+.menu-card label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.menu-card select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #e0c9a6;
+  font-size: 15px;
+  outline: none;
+}
+
+/* ================= LISTA ================= */
+.historial-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ================= CARD ================= */
+.historial-card {
+  background: white;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* ================= CARD HEADER ================= */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
+  background: #fff7ec;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.cliente {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.fecha {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ================= CARD BODY ================= */
+.card-body {
+  padding: 22px;
+}
+
+.card-body img {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #eee;
+  flex-shrink: 0;
+}
+
+.info p {
+  margin: 6px 0;
+  font-size: 14.5px;
+}
+
+/* ================= CARD FOOTER ================= */
+.card-footer {
+  text-align: center;
+  padding: 14px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.card-footer.venta {
+  background: #d4b070;
+  color: white;
+}
+
+.card-footer.apartado {
+  background: #bfa28c;
+  color: white;
+}
+.producto-historial {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.img-producto-historial {
+  width: 70px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #eee;
+}
+
+.producto-info {
+  font-size: 14px;
+}
+.productos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.producto-historial {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+  background: #fff7ec;
+  border-radius: 14px;
+}
+
+.img-producto-historial {
+  width: 64px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #eee;
+}
+
+.producto-info {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.producto-info small {
+  opacity: 0.7;
+}
+
+.producto-info .precio {
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 2px;
+}

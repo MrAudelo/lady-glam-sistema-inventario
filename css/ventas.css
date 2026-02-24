@@ -1,0 +1,547 @@
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/* ================= BODY ================= */
+body {
+  background: #fdf6ec; /* fondo completo, sin bordes */
+  color: #4a3b2a;
+  overflow-y: auto;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 60px 80px;
+}
+
+/* ================= CONTENIDO PRINCIPAL ================= */
+.modal-content {
+  background: #fdf6ec;
+  padding: 32px 36px 40px;
+  min-height: 100vh;
+}
+
+/* ================= HEADER ================= */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.modal-header h2 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.subtext {
+  font-size: 14px;
+  color: #7a6a58;
+}
+
+/* ================= CARD ================= */
+.menu-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 24px;
+}
+
+.menu-card label {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.menu-card input,
+.menu-card select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #e5d5b5;
+  font-size: 14px;
+  outline: none;
+}
+
+/* ================= LISTA VENTA ================= */
+.venta-lista {
+  margin-top: 30px;
+}
+
+.venta-lista h3 {
+  margin-bottom: 14px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ================= TABLA ================= */
+.venta-row {
+  display: grid;
+  grid-template-columns:
+    1.6fr
+    1fr
+    1.8fr
+    1fr
+    1.2fr
+    1.2fr
+    0.6fr;
+  gap: 12px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  align-items: center;
+}
+
+.venta-row.venta-head {
+  background: transparent;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 0 10px 10px;
+}
+
+/* ================= CELDAS ================= */
+.venta-row > span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ================= INPUTS ================= */
+.venta-row input[type="number"] {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #e5d5b5;
+  font-size: 13px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ================= BOTÓN ELIMINAR PRODUCTO ================= */
+.btn-delete-producto {
+  background: #b45309;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-delete-producto:hover {
+  background: #92400e;
+}
+
+/* ================= TOTAL ================= */
+.venta-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  margin: 30px 0;
+  padding: 22px;
+  background: #fff3dc;
+  border-radius: 18px;
+  font-weight: 700;
+}
+
+/* ================= PAGOS ================= */
+.pagos {
+  margin-top: 30px;
+}
+
+.pagos h3 {
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.pago-row {
+  display: grid;
+  grid-template-columns: 2fr 2fr auto;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pago-row select,
+.pago-row input {
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #e5d5b5;
+  font-size: 14px;
+}
+
+/* ================= ELIMINAR PAGO ================= */
+.btn-delete-pago {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #92400e;
+}
+
+/* ================= AGREGAR PAGO ================= */
+.add-pago {
+  background: #b9a58b;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  border: none;
+  margin-top: 8px;
+}
+
+/* ================= ACCIONES ================= */
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 36px;
+}
+
+.btn-primary {
+  background: #d6b26a;
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* ================= PRECIO ================= */
+.precio-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.precio-original {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.precio-final {
+  font-weight: 700;
+  color: #1b5e20;
+  font-size: 14px;
+}
+/* ================= BOTÓN SALIR (X) ================= */
+.btn-close {
+  background: #b45309;       /* café */
+  color: #fff;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-close:hover {
+  background: #92400e;       /* café más oscuro */
+  transform: scale(1.05);
+}
+
+.btn-close:active {
+  transform: scale(0.95);
+}
+/* ================= TOAST ================= */
+.toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #92400e; /* café */
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-10px);
+}
+/* ================= MODAL PRODUCTO MANUAL ================= */
+.modal-manual {
+  position: fixed;
+  inset: 0;
+  background: rgba(74, 59, 42, 0.65); /* overlay café */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+}
+
+.modal-manual.hidden {
+  display: none;
+}
+
+/* ================= TARJETA ================= */
+.manual-card {
+  background: #fdf6ec;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px 30px 32px;
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* ================= TITULO ================= */
+.manual-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ================= LABELS ================= */
+.manual-card label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 14px 0 6px;
+}
+
+/* ================= INPUTS ================= */
+.manual-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid #e5d5b5;
+  font-size: 14px;
+  outline: none;
+}
+
+/* ================= BOTONES ================= */
+.manual-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.manual-actions .btn-secondary,
+.manual-actions .btn-primary {
+  flex: 1;
+  padding: 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+/* ================= RESUMEN DE PAGOS ================= */
+.resumen-pagos {
+  margin-top: 20px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px dashed #e5d5b5;
+}
+
+.resumen-linea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+
+.resumen-linea span {
+  color: #6b5c4b;
+  font-weight: 600;
+}
+
+.resumen-linea strong {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ================= CAMBIO ================= */
+.resumen-linea.cambio strong {
+  color: #1b5e20; /* verde */
+  font-size: 18px;
+}
+
+/* ================= RESTANTE (CUANDO FALTA) ================= */
+#restante {
+  color: #b45309; /* café */
+  font-size: 16px;
+}
+
+/* ================= PAGOS DESHABILITADOS ================= */
+.pago-row select:disabled,
+.pago-row input:disabled {
+  background: #f3f0eb;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ================= BOTÓN GUARDAR DESACTIVADO ================= */
+.btn-primary:disabled {
+  background: #d1c3aa;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+/* ================= MÉTODOS DE PAGO ================= */
+
+.pagos {
+  margin-top: 30px;
+}
+
+.metodo-box {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.metodo-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.metodo-label input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #b45309; /* dorado */
+}
+
+.monto-metodo {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1.5px solid #e7d3b3;
+  background: #fffaf3;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.monto-metodo:disabled {
+  background: #f3efe9;
+  color: #9a8f7c;
+  cursor: not-allowed;
+}
+
+.monto-metodo:focus {
+  outline: none;
+  border-color: #b45309;
+  background: #ffffff;
+}
+
+/* ================= RESUMEN DE PAGOS ================= */
+
+.resumen-pagos {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1.5px dashed #e7d3b3;
+  background: #fff;
+}
+
+.resumen-linea {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.resumen-linea strong {
+  font-weight: 700;
+}
+
+.resumen-linea.cambio strong {
+  color: #1b5e20;
+}
+/* ================= HEADER ================= */
+.top-bar {
+  padding: 20px;
+}
+
+.btn-back {
+  background: #d6b26a;
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* FONDO DEL MODAL */
+.modal-manual {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* TARJETA */
+.manual-card {
+  background: #fff7ec;
+  width: 95%;
+  max-width: 420px;
+
+  /* 🔥 CLAVE */
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 20px;
+  padding: 20px;
+}
+
+/* 🔥 AQUÍ VA EL SCROLL */
+.manual-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* BOTONES FIJOS */
+.manual-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}

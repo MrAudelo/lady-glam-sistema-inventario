@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventario | Mirai Boutique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/inventario.css">
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <script type="module" src="js/auth-guard.js"></script>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="top-bar">
+  <button class="btn-back" onclick="location.href='index.html'">
+    ← Menú principal
+  </button>
+</header>
+
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Inventario</h1>
+    <p>Gestiona categorías y productos de tu boutique</p>
+  </section>
+
+  <!-- OPCIONES -->
+  <section class="options">
+    <div class="option-card" onclick="abrirModalCategoria()">
+      <img src="img/cat.png" alt="Categorías">
+      <div>
+        <h3>Categorías</h3>
+        <span>Define tipos de productos</span>
+      </div>
+    </div>
+
+    <div class="option-card" onclick="abrirModalProducto()">
+      <img src="img/prod.png" alt="Productos">
+      <div>
+        <h3>Productos</h3>
+        <span>Agrega productos al inventario</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVENTARIO -->
+  <section class="inventario-actual">
+    <div class="inventario-header">
+      <h2>
+  Inventario actual
+  <span class="contador">(<span id="totalProductos">0</span>)</span>
+</h2>
+    </div>
+
+   <div class="inventario-filtros">
+  <input id="buscarId" placeholder="Buscar por ID">
+  <select id="filtroCategoria">
+    <option value="">Selecciona una categoría para ver sus productos</option>
+  </select>
+</div>
+
+<p id="mensajeInventario" class="mensaje-info">
+  Selecciona una categoría para ver los productos
+</p>
+
+<div id="gridProductos" class="grid-productos"></div>
+  </section>
+
+</main>
+
+<!-- ================= MODAL CATEGORÍAS ================= -->
+<div class="modal" id="modalCategorias">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <h2>Categorías</h2>
+      <button onclick="cerrarModalCategoria()">✕</button>
+    </div>
+
+    <!-- AÑADIR CATEGORÍA -->
+    <div class="menu-card add-category-card">
+      <h3>＋ Añadir categoría</h3>
+      <div class="add-category-form">
+        <input
+          id="inputCategoria"
+          placeholder="Ej. Vestidos, Niño, Caballero"
+        >
+        <button class="btn-primary" onclick="guardarCategoria()">
+          Guardar
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3>Categorías registradas</h3>
+    <div id="listaCategorias" class="grid-categorias"></div>
+
+  </div>
+</div>
+
+<!-- ================= MODAL DETALLE CATEGORÍA ================= -->
+<div class="modal" id="modalDetalleCategoria">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <h2 id="tituloCategoria">Categoría</h2>
+      <button onclick="cerrarDetalleCategoria()">✕</button>
+    </div>
+
+    <!-- CONTENIDO NORMAL -->
+    <div id="contenidoCategoria">
+
+      <div class="categoria-top-actions">
+        <button class="btn-delete" onclick="eliminarCategoriaActual()">
+          Eliminar categoría
+        </button>
+      </div>
+
+      <hr>
+
+      <!-- ATRIBUTOS -->
+<div class="menu-card add-category-card">
+  <h3>＋ Añadir atributo</h3>
+
+  <div class="add-category-form">
+    <input
+      id="inputAtributo"
+      placeholder="Ej. Color, Talla"
+    >
+    <button
+      class="btn-primary"
+      onclick="guardarAtributo()"
+    >
+      Guardar
+    </button>
+  </div>
+</div>
+
+      <h3 style="margin-top:20px">Atributos registrados</h3>
+      <div id="listaAtributos" class="grid-atributos"></div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= MODAL OPCIONES ATRIBUTO ================= -->
+<div class="modal" id="modalOpcionesAtributo">
+  <div class="modal-content">
+<div class="modal-header">
+  <div>
+    <h2 id="tituloAtributo">Atributo</h2>
+    <small id="subtituloAtributo" class="breadcrumb"></small>
+  </div>
+  <button onclick="cerrarModalOpciones()">✕</button>
+</div>
+
+<!-- 🔥 ACCIONES DEL ATRIBUTO (DEBAJO DEL TÍTULO) -->
+<div class="categoria-top-actions">
+  <button class="btn-delete" onclick="eliminarAtributoActual()">
+    Eliminar atributo
+  </button>
+</div>
+
+<hr>
+<div class="menu-card add-category-card">
+  <h3>＋ Añadir opción</h3>
+
+  <div class="add-category-form">
+    <input
+      id="inputOpcion"
+      placeholder="Ej. CH, M, G, XL"
+    >
+    <button
+      class="btn-primary"
+      onclick="guardarOpcion()"
+    >
+      Guardar
+    </button>
+  </div>
+</div>
+
+    <h3 style="margin-top:20px">Opciones registradas</h3>
+    <div id="listaOpciones" class="grid-opciones"></div>
+
+  </div>
+</div>
+
+<!-- ================= MODAL PRODUCTO ================= -->
+<div class="modal" id="modalProducto">
+  <div class="modal-content modal-producto">
+
+    <!-- HEADER -->
+    <div class="modal-header">
+      <h2>Registrar producto</h2>
+      <button onclick="cerrarModalProducto()">✕</button>
+    </div>
+
+    <!-- CUERPO 2 COLUMNAS -->
+    <div class="producto-layout">
+
+      <!-- COLUMNA IZQUIERDA -->
+      <div class="producto-form">
+
+        <div class="menu-card">
+          <input id="productoId" placeholder="ID del producto">
+        </div>
+
+        <div class="menu-card">
+<input
+  id="productoPrecio"
+  type="number"
+  min="0"
+  step="0.01"
+  placeholder="Precio"
+  inputmode="decimal"
+/>
+        </div>
+
+        <div class="menu-card">
+          <select id="productoCategoria">
+            <option value="">Selecciona categoría</option>
+          </select>
+        </div>
+
+        <!-- aquí luego van atributos -->
+        <div id="productoAtributos"></div>
+
+      </div>
+
+      <!-- COLUMNA DERECHA -->
+      <div class="producto-imagen">
+
+        <div class="menu-card">
+          <input type="file" id="productoImagen">
+
+          <div id="previewContainer" style="display:none;">
+            <img id="previewImagen">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="producto-footer">
+      <button class="btn-primary" onclick="guardarProducto()">
+        Guardar producto
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+<!-- ================= MODAL CONFIRMAR ELIMINAR ================= -->
+<div class="modal" id="modalConfirmarEliminar">
+  <div class="modal-content modal-confirm">
+
+    <h2>Eliminar categoría</h2>
+    <p id="textoConfirmarEliminar">
+      ¿Seguro que deseas eliminar esta categoría?
+    </p>
+
+    <div class="acciones">
+      <button class="btn-secondary" onclick="cerrarConfirmarEliminar()">
+        Cancelar
+      </button>
+      <button class="btn-delete" onclick="confirmarEliminarCategoria()">
+        Eliminar
+      </button>
+    </div>
+
+  </div>
+</div>
+<!-- ================= CONFIRMAR ELIMINAR ATRIBUTO ================= -->
+<div class="modal" id="modalEliminarAtributo">
+  <div class="modal-content modal-confirm">
+
+    <h2>Eliminar atributo</h2>
+
+    <p id="textoEliminarAtributo">
+      ¿Seguro que deseas eliminar este atributo?
+    </p>
+
+    <div class="acciones">
+      <button class="btn-secondary" onclick="cerrarEliminarAtributo()">
+        Cancelar
+      </button>
+      <button class="btn-delete" onclick="confirmarEliminarAtributo()">
+        Eliminar
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script type="module" src="js/inventario.js"></script>
+</body>
+</html>

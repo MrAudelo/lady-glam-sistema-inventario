@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo de productos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/catalogo.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+<body>
+
+<main class="contenedor">
+  <h1>Catálogo de productos</h1>
+  <p class="subtitulo">Encuentra fácilmente el artículo ideal</p>
+
+  <!-- BUSQUEDA -->
+  <section class="busqueda-card">
+    <select id="selectCategoria">
+      <option value="">Selecciona una categoría</option>
+    </select>
+
+    <div id="contenedorAtributos"></div>
+
+    <div class="acciones">
+      <button id="btnBuscar">Buscar</button>
+      <button id="btnLimpiar" class="secundario">Limpiar</button>
+    </div>
+  </section>
+
+  <div id="mensaje" class="mensaje">
+    Selecciona una categoría para comenzar.
+  </div>
+
+  <section id="resultados" class="grid"></section>
+</main>
+
+<script type="module" src="js/catalogo.js"></script>
+</body>
+</html>

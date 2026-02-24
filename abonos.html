@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Abono | Mirai Boutique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/abonos.css">
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="js/auth-guard.js"></script>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="top-bar">
+  <button class="btn-back" onclick="location.href='index.html'">
+    ← Menú principal
+  </button>
+</header>
+
+<main class="container">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <h1>Registrar abono</h1>
+    <p>Busca un apartado y registra un nuevo pago</p>
+  </section>
+
+  <!-- ================= BUSCADOR ================= -->
+  <div class="menu-card">
+    <label>Buscar cliente</label>
+    <input
+      type="text"
+      id="buscarCliente"
+      placeholder="Nombre del cliente"
+      autocomplete="off"
+    >
+  </div>
+<!-- ================= FILTRO DE ESTADO ================= -->
+<div class="menu-card">
+  <label>Filtrar apartados</label>
+  <select id="filtroEstado">
+    <option value="activo">Activos</option>
+     <option value="vencido">Vencidos</option>
+    <option value="liquidado">Liquidados</option>
+    <option value="cancelado">Cancelados</option>
+    <option value="todos">Todos</option>
+  </select>
+</div>
+
+<!-- ================= LISTA DE APARTADOS ================= -->
+<section class="venta-lista full-width">
+
+  <h3>Apartados</h3>
+
+  <div class="venta-table">
+
+    <!-- ENCABEZADOS -->
+    <div class="venta-row venta-head">
+      <span>Cliente</span>
+      <span>Teléfono</span>
+      <span>Fecha apartado</span>
+      <span>Fecha límite</span>
+      <span>Estado</span>
+      <span>Acciones</span>
+    </div>
+
+    <!-- FILAS DINÁMICAS -->
+    <div id="listaApartados"></div>
+
+  </div>
+
+</section>
+</main>
+
+<!-- ================= MODAL ABONO ================= -->
+<div class="modal" id="modalAbono" style="display:none;">
+  <div class="modal-content modal-venta">
+
+    <!-- HEADER -->
+    <div class="modal-header">
+      <div>
+        <h2>Registrar abono</h2>
+        <p style="color:#7a6a58;font-size:14px">
+          Registra un nuevo pago del cliente
+        </p>
+      </div>
+      <button onclick="cerrarModalAbono()">✕</button>
+    </div>
+
+    <!-- INFO APARTADO -->
+    <div class="apartado-info">
+      <div class="info-row">
+        <span class="label">Cliente</span>
+        <span id="abonoCliente">—</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Teléfono</span>
+        <span id="abonoTelefono">—</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Total de la cuenta</span>
+        <span>$<span id="abonoTotal">0.00</span></span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Anticipo acordado</span>
+        <span>$<span id="abonoAnticipo">0.00</span></span>
+      </div>
+
+      <div class="info-row saldo">
+        <span class="label">Saldo pendiente</span>
+        <span>$<span id="abonoSaldo">0.00</span></span>
+      </div>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="productos-apartado">
+      <h4>Productos apartados</h4>
+
+      <div class="productos-table">
+        <div class="producto-row producto-head">
+          <span>Producto</span>
+          <span>Detalles</span>
+          <span>Precio</span>
+        </div>
+
+        <div id="listaProductosApartado"></div>
+      </div>
+    </div>
+<!-- ================= HISTORIAL DE ABONOS ================= -->
+<div class="menu-card">
+  <h4>Historial de abonos</h4>
+
+  <div id="listaAbonos" class="lista-abonos">
+    <p style="opacity:.6">No hay abonos registrados</p>
+  </div>
+</div>
+
+<!-- ================= ABONO ================= -->
+<div class="menu-card">
+  <label>Monto del abono</label>
+  <input
+    type="number"
+    id="montoAbono"
+    placeholder="Ej. 150"
+    min="0"
+    step="0.01"
+  >
+</div>
+<!-- ================= CANTIDAD DE MÉTODOS ================= -->
+<div class="menu-card">
+  <label>¿Con cuántos métodos pagará?</label>
+  <select id="cantidadMetodos">
+    <option value="">Selecciona</option>
+    <option value="1">1 método</option>
+    <option value="2">2 métodos</option>
+  </select>
+</div>
+
+<!-- ================= MÉTODOS DE PAGO ================= -->
+<div class="menu-card">
+  <h4>Métodos de pago</h4>
+
+  <div class="metodos-pago">
+    <div class="metodo">
+      <label class="metodo-check">
+        <input type="checkbox" class="chk-metodo" data-metodo="Tarjeta">
+        <span>Tarjeta</span>
+      </label>
+      <input
+        type="number"
+        class="monto-metodo"
+        data-metodo="Tarjeta"
+        placeholder="$0.00"
+        disabled
+      >
+    </div>
+
+    <div class="metodo">
+      <label class="metodo-check">
+        <input type="checkbox" class="chk-metodo" data-metodo="Transferencia">
+        <span>Transferencia</span>
+      </label>
+      <input
+        type="number"
+        class="monto-metodo"
+        data-metodo="Transferencia"
+        placeholder="$0.00"
+        disabled
+      >
+    </div>
+    <div class="metodo">
+      <label class="metodo-check">
+        <input type="checkbox" class="chk-metodo" data-metodo="Efectivo">
+        <span>Efectivo</span>
+      </label>
+      <input
+        type="number"
+        class="monto-metodo"
+        data-metodo="Efectivo"
+        placeholder="$0.00"
+        disabled
+      >
+    </div>
+  </div>
+</div>
+
+<!-- ================= FERIA ================= -->
+<div class="menu-card">
+  <label>Feria</label>
+  <input
+    type="text"
+    id="feriaAbono"
+    value="$0.00"
+    disabled
+  >
+  <small>La feria solo aplica si hay pago en efectivo</small>
+</div>
+
+<!-- ================= ESTADO ================= -->
+<div class="estado-abono">
+  <span id="estadoAbono">Ingresa el monto del abono</span>
+</div>
+  <!-- EMPLEADO -->
+<section class="menu-card">
+  <label>Empleado que registra este abono</label>
+  <select id="selectEmpleado">
+    <option value="">Cargando empleados...</option>
+  </select>
+</section>
+
+    <!-- ACCIONES -->
+    <div class="acciones venta-actions">
+      <button class="btn-secondary" onclick="cerrarModalAbono()">
+        Cancelar
+      </button>
+
+      <button
+        class="btn-primary"
+        id="btnGuardarAbono"
+        disabled
+      >
+        Registrar abono
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= JS ================= -->
+<script type="module" src="js/abonos.js"></script>
+
+</body>
+</html>

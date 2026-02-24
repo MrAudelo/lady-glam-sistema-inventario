@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Mirai Boutique</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/logo.png">
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<script src="js/auth-guard.js"></script>
+<body>
+
+<div class="login-container">
+    <div class="login-card">
+        <img src="img/logo.png" alt="Mirai Boutique" class="logo">
+
+        <h2>Inicio de Sesión</h2>
+
+        <input type="text" id="user" placeholder="Usuario">
+        <input type="password" id="password" placeholder="Contraseña">
+
+        <button onclick="login()">Entrar</button>
+
+        <p id="message"></p>
+    </div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script type="module" src="js/login.js"></script>
+</body>
+</html>

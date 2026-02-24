@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Historial | Mirai Boutique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FUENTE -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/historial.css">
+  <script type="module" src="js/auth-guard.js"></script>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="top-bar">
+  <button class="btn-back" onclick="location.href='index.html'">
+    ← Menú principal
+  </button>
+</header>
+
+<main class="container">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <h1>Historial</h1>
+    <p>Consulta ventas y apartados registrados</p>
+  </section>
+
+  <!-- ================= SELECTOR ================= -->
+  <div class="menu-card">
+    <label for="tipoHistorial">¿Qué deseas ver?</label>
+    <select id="tipoHistorial">
+      <option value="ventas">Ventas</option>
+      <option value="apartados">Apartados</option>
+    </select>
+  </div>
+<!-- ================= FILTRO FECHA ================= -->
+<div class="menu-card">
+  <label for="filtroFecha">Fecha</label>
+  <input type="date" id="filtroFecha">
+</div>
+
+  <!-- ================= LISTADO ================= -->
+  <section class="historial-lista" id="listaHistorial">
+    <!-- 🔥 LAS CARDS SE INSERTAN AQUÍ DESDE historial.js -->
+  </section>
+
+</main>
+
+<!-- ================= JS ================= -->
+<script type="module" src="js/historial.js"></script>
+
+</body>
+</html>

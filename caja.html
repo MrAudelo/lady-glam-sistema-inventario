@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Corte de Caja</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/caja.css">
+  <script type="module" src="js/auth-guard.js"></script>
+</head>
+<body>
+
+<!-- ================= BOTÓN MENÚ ================= -->
+<div class="top-nav">
+  <button class="btn-menu" onclick="location.href='index.html'">
+    ← Menú principal
+  </button>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header-principal">
+  <h1>Corte de Caja</h1>
+  <p class="subtitulo">
+    Resumen general de ingresos, ventas, apartados y abonos
+  </p>
+</header>
+
+<!-- ================= FILTROS ================= -->
+<section class="card filtros-card">
+  <h3 class="card-title">Filtros</h3>
+
+  <div class="filtros-grid">
+    <div class="filtro">
+      <label>Fecha</label>
+      <input type="date" id="fechaCaja">
+    </div>
+
+    <div class="filtro">
+      <label>Empleado</label>
+      <select id="empleadoCaja">
+        <option value="todos">Todos</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESUMEN GENERAL ================= -->
+<section class="card">
+  <h3 class="card-title">Resumen del día</h3>
+
+  <div class="resumen-grid">
+    <div class="resumen-item">
+      <span>Total general</span>
+      <strong id="totalGeneral">$0.00</strong>
+    </div>
+
+    <div class="resumen-item">
+      <span>Efectivo</span>
+      <strong id="totalEfectivo">$0.00</strong>
+    </div>
+
+    <div class="resumen-item">
+      <span>Tarjeta</span>
+      <strong id="totalTarjeta">$0.00</strong>
+    </div>
+
+    <div class="resumen-item">
+      <span>Transferencia</span>
+      <strong id="totalTransferencia">$0.00</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MOVIMIENTOS ================= -->
+<section class="card">
+  <h3 class="card-title">Movimientos registrados</h3>
+
+  <table class="tabla-caja">
+    <thead>
+      <tr>
+        <th>Hora</th>
+        <th>Tipo</th>
+        <th>Empleado</th>
+        <th>Método</th>
+        <th>Monto</th>
+      </tr>
+    </thead>
+    <tbody id="tablaMovimientos">
+      <!-- ventas / apartados / abonos -->
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= CORTE POR EMPLEADO ================= -->
+<section class="card">
+  <h3 class="card-title">Corte por empleado</h3>
+
+  <div class="empleados-grid" id="contenedorEmpleados">
+    <!-- tarjetas por empleado -->
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer-caja">
+  Corte generado el <strong id="fechaActual">--/--/----</strong>
+</footer>
+
+<!-- ================= JS ================= -->
+<script type="module" src="js/caja.js"></script>
+
+</body>
+</html>

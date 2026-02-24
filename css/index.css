@@ -1,0 +1,189 @@
+:root {
+    --bg-main: #f4e4d3;
+    --bg-panel: #e1c58a;
+    --accent: #b08a3e;
+    --dark: #3a2c1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTENEDOR GENERAL */
+.main-container {
+    width: 95%;
+    min-height: 95vh;
+    display: flex;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+
+/* PANEL IZQUIERDO */
+.left-panel {
+    width: 42%;
+    background: radial-gradient(circle at top, #efd9a6, #e1c58a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset -12px 0 25px rgba(0,0,0,0.08);
+}
+
+/* CONTENIDO IZQUIERDO */
+.branding {
+    text-align: center;
+}
+
+.branding h1 {
+    font-size: 46px;
+    font-weight: 700;
+    margin-bottom: 35px;
+    color: var(--dark);
+}
+
+/* LOGO */
+.logo {
+    width: 500px;
+    max-width: 90%;
+    padding: 25px;
+    background-color: rgba(255,255,255,0.35);
+    border-radius: 22px;
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.15),
+        inset 0 0 0 2px rgba(176,138,62,0.35);
+}
+
+/* PANEL DERECHO */
+.right-panel {
+    width: 58%;
+    background-color: var(--bg-main);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* TÍTULO */
+.right-panel h2 {
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 55px;
+    text-align: center;
+}
+
+.right-panel h2::after {
+    content: "";
+    width: 120px;
+    height: 4px;
+    background-color: var(--accent);
+    display: block;
+    margin: 12px auto 0;
+    border-radius: 5px;
+}
+
+/* BOTONES */
+.right-panel button {
+    width: 400px;
+    max-width: 100%;
+    padding: 18px;
+    margin-bottom: 28px;
+    background: linear-gradient(180deg, #e6cc92, #d6b774);
+    border: none;
+    border-radius: 35px;
+    font-size: 21px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.18);
+    transition: all 0.25s ease;
+}
+
+.right-panel button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 25px rgba(176,138,62,0.45);
+}
+
+/* ========================= */
+/* 📱 RESPONSIVE DESIGN */
+/* ========================= */
+
+@media (max-width: 1024px) {
+    .branding h1 {
+        font-size: 38px;
+    }
+
+    .right-panel h2 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        border-radius: 20px;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%;
+    }
+
+    .left-panel {
+        padding: 50px 20px;
+    }
+
+    .right-panel {
+        padding: 45px 25px;
+    }
+
+    .branding h1 {
+        font-size: 32px;
+    }
+
+    .right-panel h2 {
+        font-size: 26px;
+        margin-bottom: 40px;
+    }
+
+    .right-panel button {
+        font-size: 18px;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .branding h1 {
+        font-size: 26px;
+    }
+
+    .logo {
+        width: 220px;
+        padding: 18px;
+    }
+
+    .right-panel h2 {
+        font-size: 22px;
+    }
+
+    .right-panel button {
+        font-size: 16px;
+        padding: 14px;
+        border-radius: 28px;
+    }
+}
+html, body {
+    height: 100%;
+    overflow: hidden;
+}

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Apartado | Mirai Boutique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/apartados.css">
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="js/auth-guard.js"></script>
+</head>
+<body>
+
+<header class="top-bar">
+  <button class="btn-back" onclick="location.href='index.html'">
+    ← Menú principal
+  </button>
+</header>
+
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Registrar apartado</h1>
+    <p>Escanea productos y registra un anticipo</p>
+  </section>
+
+  <!-- ESCÁNER -->
+  <div class="menu-card">
+    <label>Escanear producto</label>
+    <input type="text" id="scanInput" placeholder="Escanea el producto o escribe MANUAL" autocomplete="off">
+  </div>
+
+  <!-- PRODUCTOS -->
+  <section class="venta-lista full-width">
+    <h3>Productos en el apartado</h3>
+
+    <div class="venta-table">
+      <div class="venta-row venta-head">
+        <span>Producto</span>
+        <span>Categoría</span>
+        <span>Atributos</span>
+        <span>Precio</span>
+        <span>Cupón ($)</span>
+        <span>Desc. (%)</span>
+        <span></span>
+      </div>
+
+      <div id="listaVenta"></div>
+    </div>
+  </section>
+
+  <!-- TOTAL -->
+  <section class="resumen-card">
+    <div class="resumen-row total">
+      <span>Total del apartado</span>
+      <strong id="totalVenta">$0.00</strong>
+    </div>
+  </section>
+
+  <!-- ANTICIPO -->
+<!-- ANTICIPO -->
+<section class="menu-card">
+  <label>Anticipo acordado</label>
+  <input
+    type="number"
+    id="anticipoAcordado"
+    placeholder="Ej. 500"
+    min="0"
+    step="0.01"
+  >
+  <small style="opacity:.7; margin-top:6px; display:block;">
+    Este es el monto que el cliente paga hoy
+  </small>
+</section>
+
+<!-- CANTIDAD DE MÉTODOS DE PAGO -->
+<section class="menu-card">
+  <label>¿Con cuántos métodos pagará el anticipo?</label>
+  <select id="cantidadMetodos">
+    <option value="">Selecciona</option>
+    <option value="1">1 método</option>
+    <option value="2">2 métodos</option>
+  </select>
+
+  <small style="opacity:.7; margin-top:6px; display:block;">
+    Define cuántos métodos se habilitarán
+  </small>
+</section>
+
+<!-- MÉTODOS DE PAGO -->
+<section class="menu-card pagos">
+  <label>Métodos de pago del anticipo</label>
+
+  <!-- TARJETA -->
+  <div class="metodo-box">
+    <input
+      type="checkbox"
+      class="chk-metodo"
+      data-metodo="Tarjeta"
+      disabled
+    >
+    <span>Tarjeta</span>
+    <input
+      type="number"
+      class="monto-metodo"
+      placeholder="Monto con tarjeta"
+      min="0"
+      step="0.01"
+      disabled
+    >
+  </div>
+
+  <!-- TRANSFERENCIA -->
+  <div class="metodo-box">
+    <input
+      type="checkbox"
+      class="chk-metodo"
+      data-metodo="Transferencia"
+      disabled
+    >
+    <span>Transferencia</span>
+    <input
+      type="number"
+      class="monto-metodo"
+      placeholder="Monto por transferencia"
+      min="0"
+      step="0.01"
+      disabled
+    >
+  </div>
+   <!-- EFECTIVO -->
+  <div class="metodo-box">
+    <input
+      type="checkbox"
+      class="chk-metodo"
+      data-metodo="Efectivo"
+      disabled
+    >
+    <span>Efectivo</span>
+    <input
+      type="number"
+      class="monto-metodo"
+      placeholder="Monto en efectivo"
+      min="0"
+      step="0.01"
+      disabled
+    >
+  </div>
+</section>
+
+  <!-- DESGLOSE + CAMBIO (ANTES DEL ESTADO) -->
+  <section class="resumen-card">
+    <div class="resumen-row">
+      <span>Anticipo pagado</span>
+      <strong id="totalPagado">$0.00</strong>
+    </div>
+
+    <div class="resumen-row restante">
+      <span>Saldo pendiente</span>
+      <strong id="restante">$0.00</strong>
+    </div>
+
+    <div class="resumen-row total" style="margin-top:10px;">
+      <span>Cambio</span>
+      <strong id="cambio">$0.00</strong>
+    </div>
+  </section>
+
+  <!-- ESTADO -->
+  <div class="venta-total">
+    <span id="estadoTexto">Agrega productos y anticipo</span>
+  </div>
+
+  <!-- FECHAS -->
+  <section class="menu-card">
+    <div class="resumen-row">
+      <span>Fecha del apartado</span>
+      <strong id="fechaApartado">Hoy</strong>
+    </div>
+
+    <div style="margin-top:14px">
+      <label>Fecha límite para recoger</label>
+      <input type="date" id="fechaLimiteApartado">
+    </div>
+  </section>
+
+  <!-- CLIENTE -->
+  <section class="menu-card">
+    <label>Cliente</label>
+    <input type="text" id="nombreCliente" placeholder="Nombre del cliente" style="margin-bottom:12px">
+    <input type="tel" id="telefonoCliente" placeholder="Teléfono del cliente" maxlength="10">
+  </section>
+
+<!-- EMPLEADO -->
+<section class="menu-card">
+  <label>Empleado que registró el apartado</label>
+  <select id="selectEmpleado">
+    <option value="">Selecciona un empleado</option>
+    <!-- 🔥 LOS EMPLEADOS SE CARGAN DESDE FIRESTORE -->
+  </select>
+</section>
+
+  <!-- ACCIONES -->
+  <div class="acciones venta-actions">
+    <button class="btn-secondary" onclick="location.reload()">Cancelar</button>
+    <button class="btn-primary" id="btnGuardarVenta" onclick="guardarApartado()" disabled>
+      Guardar apartado
+    </button>
+  </div>
+
+</main>
+<!-- MODAL PRODUCTO MANUAL -->
+<div id="modalManual" class="modal hidden">
+  <div class="modal-card">
+    <h2>Producto manual</h2>
+
+    <label>Nombre del producto</label>
+    <input
+      type="text"
+      id="manualNombre"
+      placeholder="Producto sin código"
+    >
+
+    <label>Categoría</label>
+    <select id="manualCategoria">
+      <option value="">Selecciona categoría</option>
+      <option value="Ropa">Ropa</option>
+      <option value="Accesorios">Accesorios</option>
+      <option value="Otro">Otro</option>
+    </select>
+
+    <label>Precio</label>
+    <input
+      type="number"
+      id="manualPrecio"
+      placeholder="Ej. 350"
+      min="0"
+      step="0.01"
+    >
+<!-- 👇 ESTO ES NUEVO -->
+<div id="manualAtributos" class="manual-atributos"></div>
+    <div class="acciones">
+      <button id="cancelarManual" class="btn-secondary">
+        Cancelar
+      </button>
+      <button id="agregarManual" class="btn-primary">
+        Agregar a la venta
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast hidden"></div>
+<script type="module" src="js/apartados.js"></script>
+</body>
+</html>
